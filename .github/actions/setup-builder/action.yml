@@ -33,7 +33,7 @@ runs:
         echo "Installing ${{ inputs.rust-version }}"
         rustup toolchain install ${{ inputs.rust-version }}
         rustup default ${{ inputs.rust-version }}
-        rustup component add rustfmt clippy
+        rustup component add rustfmt clippy miri
     - name: Fixup git permissions
       # https://github.com/actions/checkout/issues/766
       shell: bash

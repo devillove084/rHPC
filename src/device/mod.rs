@@ -23,6 +23,6 @@ pub use cpu::*;
 
 #[async_trait::async_trait]
 pub trait Device {
-    async fn execute<F, R: Send>(&self, computation: F) -> crate::Result<R>
+    async fn execute<F: Send, R: Send>(&self, computation: F) -> crate::Result<std::sync::Arc<R>>
     where F: FnOnce() -> crate::Result<std::sync::Arc<R>>;
 }

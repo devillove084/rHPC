@@ -25,6 +25,8 @@ pub trait TensorComputation {
     type Output;
 
     async fn add(&self, other: &Self) -> crate::Result<Self::Output, TensorComputationError>;
+
     async fn multiply(&self, other: &Self) -> crate::Result<Self::Output, TensorComputationError>;
+
     async fn transpose(&self) -> crate::Result<Self::Output, TensorComputationError>;
 }

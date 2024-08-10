@@ -14,3 +14,45 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
+
+use std::sync::Arc;
+
+use async_trait::async_trait;
+
+use super::Device;
+
+pub struct Cpu {
+    cores: usize,
+    threads: usize,
+    frequency: f64,
+}
+
+impl Cpu {
+    pub fn new(cores: usize, threads: usize, frequency: f64) -> Self {
+        Cpu {
+            cores,
+            threads,
+            frequency,
+        }
+    }
+
+    pub fn cores(&self) -> usize {
+        self.cores
+    }
+
+    pub fn threads(&self) -> usize {
+        self.threads
+    }
+
+    pub fn frequency(&self) -> f64 {
+        self.frequency
+    }
+}
+
+#[async_trait]
+impl Device for Cpu {
+    async fn execute<F: Send, R: Send>(&self, computation: F) -> crate::Result<Arc<R>>
+    where F: FnOnce() -> crate::Result<Arc<R>> {
+        computation()
+    }
+}

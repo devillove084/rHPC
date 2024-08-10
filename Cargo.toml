@@ -23,5 +23,6 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+async-std = "1.12.0"
 async-trait = "0.1.81"
 snafu = "0.8.4"
