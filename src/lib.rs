@@ -1,14 +1,8 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+mod device;
+pub use device::*;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+mod compute;
+pub use compute::*;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+mod error;
+pub use error::*;
