@@ -1,0 +1,23 @@
+# This file is heavily inspired by
+#  [datafusion](https://github.com/apache/datafusion/blob/main/.github/actions/setup-builder/action.yaml).
+name: Prepare Rust Builder
+description: 'Prepare Rust Build Environment'
+inputs:
+  rust-version:
+    description: 'version of rust to install (e.g. stable)'
+    required: true
+    default: 'nightly'
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Rust toolchain
+      shell: bash
+      run: |
+        echo "Installing ${{ inputs.rust-version }}"
+        rustup toolchain install ${{ inputs.rust-version }}
+        rustup default ${{ inputs.rust-version }}
+        rustup component add rustfmt clippy
+    - name: Fixup git permissions
+      # https://github.com/actions/checkout/issues/766
+      shell: bash
+      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
