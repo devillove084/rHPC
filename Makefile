@@ -55,5 +55,8 @@ doc-test:
 unit-test: doc-test
 	cargo test --no-fail-fast --lib --all-features --workspace
 
+miri-test:
+	cargo miri test
+
 test: doc-test
 	cargo test --no-fail-fast --all-targets --all-features --workspace

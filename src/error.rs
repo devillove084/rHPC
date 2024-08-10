@@ -37,6 +37,9 @@ pub enum TensorComputationError {
         found: Vec<usize>,
     },
 
+    #[snafu(display("Invalid shape provided: {}", source))]
+    InvalidShape { source: ndarray::ShapeError },
+
     #[snafu(display("Arithmetic operation failed: {}", details))]
     ArithmeticError { details: String },
 }
