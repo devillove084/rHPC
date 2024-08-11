@@ -24,9 +24,9 @@ edition = "2024"
 
 [dependencies]
 async-trait = "0.1.81"
-snafu = "0.8.4"
-ndarray = "0.16.0"
 core_affinity = "0.8.1"
+ndarray = "0.16.0"
+snafu = "0.8.4"
 
 [dependencies.async-std]
 version = "1.12.0"
